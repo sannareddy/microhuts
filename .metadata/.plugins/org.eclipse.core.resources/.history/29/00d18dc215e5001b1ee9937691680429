@@ -1,0 +1,20 @@
+package in.codehut.userservice;
+
+public class PaymentService {
+	private double paymentId;
+
+	public double getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(double paymentId) {
+		this.paymentId = paymentId;
+	}
+
+	public PaymentService(double paymentId) {
+		super();
+		this.paymentId = paymentId;
+	}
+
+
+}

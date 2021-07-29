@@ -1,0 +1,9 @@
+package in.codehut.userservice.data.repos;
+
+import org.springframework.data.repository.CrudRepository;
+
+import in.codehut.userservice.models.User;
+
+public interface UserRepository extends CrudRepository<User, Long>{
+
+}

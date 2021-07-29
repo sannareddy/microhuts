@@ -1,0 +1,17 @@
+package in.codehut.userservice.service.impl;
+
+import java.util.UUID;
+
+import in.codehut.userservice.models.User;
+import in.codehut.userservice.service.UserService;
+
+public class UserServiceImpl implements UserService{
+
+	@Override
+	public User createUser(User user) {
+		user.setUserId(UUID.randomUUID().toString());
+		ModelMapper
+		return null;
+	}
+
+}

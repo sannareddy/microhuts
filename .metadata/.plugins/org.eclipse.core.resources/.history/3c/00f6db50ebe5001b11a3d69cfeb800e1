@@ -1,0 +1,32 @@
+package in.codehut.paymentservice.controller;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.codehut.paymentservice.model.Payment;
+
+@RestController
+@RequestMapping("/payments")
+public class PaymentServiceController {
+	
+	@GetMapping("")
+	@ResponseBody
+	public List<Payment> getPayments() {
+		List<Payment> paymentlist=new ArrayList<>();
+		Payment paymentservice=new Payment(1089888,1,new Date(),"inprogress");
+		paymentlist.add(paymentservice);
+		paymentservice=new Payment(1089889,2,new Date(),"inprogress");
+		paymentlist.add(paymentservice);
+		paymentservice=new Payment(1089890,1,new Date(),"Completed");
+		paymentlist.add(paymentservice);
+		return paymentlist;
+		
+	}
+
+}

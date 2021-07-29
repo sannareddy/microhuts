@@ -1,0 +1,26 @@
+package in.codehut.userservice.ui.models;
+
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+public class UserPaymentsIO {
+	private String userId;
+	private String userName;
+	@JsonFormat(pattern="dd-MMM-yyyy")
+	private Date userDOB;
+	private List<PaymentsIO> paymentsIO;
+	public UserIO getUserIO() {
+		return userIO;
+	}
+	public void setUserIO(UserIO userIO) {
+		this.userIO = userIO;
+	}
+	public List<PaymentsIO> getPaymentsIO() {
+		return paymentsIO;
+	}
+	public void setPaymentsIO(List<PaymentsIO> paymentsIO) {
+		this.paymentsIO = paymentsIO;
+	}
+}

@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/sannareddy/configserver
+          username: thevamsi@live.com
+          password: G!thub123$
+          clone-on-start: true
+          default-label: main
+  application:
+    name: configserver
+  artemis:
+    mode: native
+    broker-url: tcp://0.0.0.0:61616
+    user: admin
+    password: admin
+server:
+  port: 8012
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - busrefresh

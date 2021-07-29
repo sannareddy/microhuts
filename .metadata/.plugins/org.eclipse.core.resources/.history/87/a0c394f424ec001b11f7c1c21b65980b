@@ -1,0 +1,39 @@
+server:
+  port: 8081
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8080/eureka}
+  instance:
+    instance-id: ${spring.application.name}:${INSTANCE_ID:${random.value}}
+    prefer-ip-address: true
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+      - id: userservice
+        uri: lb://USERSERVICE
+        predicates:
+        - Path=/users/**
+      - id: paymentservice
+        uri: lb://PAYMENTSERVICE
+        predicates:
+        - Path=/payments/**
+    rabbitmq:
+	    host: localhost
+	    port: 5672
+	    username: guest
+	    password: guest              
+management:
+  endpoint:
+    gateway:
+      enabled: true             
+    
+  
+  
