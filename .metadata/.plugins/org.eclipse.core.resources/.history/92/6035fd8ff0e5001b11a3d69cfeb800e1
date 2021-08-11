@@ -1,5 +1,0 @@
-package in.codehut.userservice.feignclients;
-
-public interface PaymentsClient {
-
-}

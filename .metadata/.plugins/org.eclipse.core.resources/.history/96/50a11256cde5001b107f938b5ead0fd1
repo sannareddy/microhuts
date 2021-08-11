@@ -1,5 +1,0 @@
-package in.codehut.userservice.data.models;
-
-public class UserEntity {
-
-}

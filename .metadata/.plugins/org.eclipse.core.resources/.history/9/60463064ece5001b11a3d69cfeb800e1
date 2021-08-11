@@ -1,6 +1,0 @@
-package in.codehut.userservice.ui.models;
-
-public class UserPaymentsIO {
-	private UserIO userIO;
-	private List<PaymentsIO> paymentsIO;
-}

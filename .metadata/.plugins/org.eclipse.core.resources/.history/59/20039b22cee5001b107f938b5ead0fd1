@@ -1,5 +1,0 @@
-package in.codehut.userservice.data.repos;
-
-public interface UserRepository {
-
-}

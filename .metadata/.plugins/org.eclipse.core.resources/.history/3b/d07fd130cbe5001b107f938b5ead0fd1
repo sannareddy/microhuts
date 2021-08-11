@@ -1,5 +1,0 @@
-package in.codehut.userservice.service;
-
-public interface UserService {
-
-}
