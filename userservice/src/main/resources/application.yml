@@ -29,4 +29,6 @@ eureka:
     prefer-ip-address: true
 logging:
   file:    
-    name: userservice.log   
+    name: userservice.log
+login:
+  url: /users/login       

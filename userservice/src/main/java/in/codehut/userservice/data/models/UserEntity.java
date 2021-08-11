@@ -21,6 +21,10 @@ public class UserEntity implements Serializable{
 	private String userName;
 	@Column(nullable=true, length=50)
 	private Date userDOB;
+	@Column(length=256)
+	private String encryptedPassword;
+	@Column(length=256)
+	private String email;
 	public String getUserId() {
 		return userId;
 	}
@@ -38,6 +42,24 @@ public class UserEntity implements Serializable{
 	}
 	public void setUserDOB(Date userDOB) {
 		this.userDOB = userDOB;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getEncryptedPassword() {
+		return encryptedPassword;
+	}
+	public void setEncryptedPassword(String encryptedPassword) {
+		this.encryptedPassword = encryptedPassword;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

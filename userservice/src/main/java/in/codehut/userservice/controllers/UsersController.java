@@ -11,6 +11,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.codehut.userservice.feignclients.PaymentsClient;
-import in.codehut.userservice.models.User;
+import in.codehut.userservice.models.UserModel;
 import in.codehut.userservice.service.UserService;
 import in.codehut.userservice.ui.models.PaymentsIO;
 import in.codehut.userservice.ui.models.UserIO;
@@ -39,13 +40,13 @@ public class UsersController {
 	PaymentsClient paymentsClient;
 	@GetMapping("")
 	@ResponseBody
-	public List<User> getUsers(){
+	public List<UserIO> getUsers(){
 		logger.info("Entered: "+env.getProperty("local.server.port"));
 		logger.info("Entered: "+env.getProperty("programmer.name"));
-		List<User> users = new ArrayList<>();
-		User user = new User("1","Vamsi",new Date());
+		List<UserIO> users = new ArrayList<>();
+		UserIO user = new UserIO("Vamsi",new Date());
 		users.add(user);
-		user = new User("2","Druva",new Date());
+		user = new UserIO("Druva",new Date());
 		users.add(user);		
 		return users;
 	}
@@ -54,12 +55,13 @@ public class UsersController {
 	public ResponseEntity<UserIO> createUser(@RequestBody UserIO user) {
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		User userModel= modelMapper.map(user, User.class);
+		UserModel userModel= modelMapper.map(user, UserModel.class);
 		userModel = userService.createUser(userModel);
-		user = modelMapper.map(userModel,UserIO.class);
+		user = modelMapper.map(userModel,UserIO.class);		
 		return ResponseEntity.status(HttpStatus.CREATED).body(user);
 	}
-	@GetMapping("/{userid}/payments")
+	@GetMapping(path="/{userid}/payments",
+				produces= {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<UserPaymentsIO> getUserPayments(@PathVariable("userid") int id){
 		logger.info("Entered: "+env.getProperty("local.server.port"));
 		logger.info("Entered: "+env.getProperty("programmer.name"));
@@ -68,4 +70,5 @@ public class UsersController {
 		userPaymentIO.setPaymentsIO(payments);
 		return ResponseEntity.status(HttpStatus.FOUND).body(userPaymentIO);		
 	}
+
 }

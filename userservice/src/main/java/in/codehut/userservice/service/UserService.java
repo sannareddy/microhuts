@@ -1,7 +1,10 @@
 package in.codehut.userservice.service;
 
-import in.codehut.userservice.models.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
-	User createUser(User user);
+import in.codehut.userservice.models.UserModel;
+
+public interface UserService extends UserDetailsService{
+	UserModel createUser(UserModel user);
+	UserModel getUserByEmail(String email);
 }
