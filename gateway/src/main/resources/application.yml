@@ -17,10 +17,24 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-      - id: userservice
+      - id: userservice-get
         uri: lb://USERSERVICE
         predicates:
-        - Path=/users/**
+        - Path=/users
+        - Method=GET
+        - Header=Authorization, Bearer (.*)
+        filters:
+        - name: AuthorizationHeaderFilter        
+      - id: userservice-create
+        uri: lb://USERSERVICE
+        predicates:
+        - Path=/users
+        - Method=POST
+      - id: userservice-login
+        uri: lb://USERSERVICE
+        predicates:
+        - Path=/users/login
+        - Method=POST            
       - id: paymentservice
         uri: lb://PAYMENTSERVICE
         predicates:
