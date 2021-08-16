@@ -3,6 +3,9 @@ server:
 spring:
   application:
     name: userservice
+  jpa:
+    hibernate:
+      ddl-auto: update  
   h2:
     console:
       enabled: true
@@ -14,7 +17,10 @@ spring:
     username: guest
     password: guest      
   datasource:
-    url: jdbc:h2:mem:testdb        
+#    url: jdbc:h2:mem:testdb
+     url: jdbc:mysql://localhost:3306/microservices
+     username: root
+     password: admin    
   config:
     import:
     - optional:configserver:http://localhost:8012
@@ -32,3 +38,9 @@ logging:
     name: userservice.log
 login:
   url: /users/login       
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - mappings  

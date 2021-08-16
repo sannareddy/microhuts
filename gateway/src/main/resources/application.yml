@@ -34,7 +34,12 @@ spring:
         uri: lb://USERSERVICE
         predicates:
         - Path=/users/login
-        - Method=POST            
+        - Method=POST
+      - id: userservice-actuator
+        uri: lb://USERSERVICE
+        predicates:
+        - Path=/users/actuator/*
+        - Method=GET               
       - id: paymentservice
         uri: lb://PAYMENTSERVICE
         predicates:
@@ -43,11 +48,16 @@ spring:
     host: localhost
     port: 5672
     username: guest
-    password: guest              
+    password: guest                  
 management:
   endpoint:
     gateway:
-      enabled: true             
-    
-  
-  
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+        - beans
+        - info
+token:
+  secret: abcd134114141143krishna
