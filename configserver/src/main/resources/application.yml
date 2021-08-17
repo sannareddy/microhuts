@@ -5,7 +5,7 @@ spring:
         git:
           uri: https://github.com/sannareddy/configserver
           username: thevamsi@live.com
-          password: G!thub123$
+          password: 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
           clone-on-start: true
           default-label: main
   application:
